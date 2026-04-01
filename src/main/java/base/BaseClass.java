@@ -5,16 +5,24 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import utils.ConfigReader;
+
 public class BaseClass {
 	
 	
 	public static WebDriver driver;
 	
+	
 	public static void initializeDriver() 
 	{
-		driver = new ChromeDriver();
+		String browser = ConfigReader.getProperty("browser");
+		if(browser.equalsIgnoreCase("chrome"))
+		{
+			driver = new ChromeDriver();
+			
+		}
 		driver.manage().window().maximize();
-		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+		driver.get(ConfigReader.getProperty("url"));
 		//driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		
 		

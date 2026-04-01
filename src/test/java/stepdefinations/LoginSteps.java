@@ -11,6 +11,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.LoginPage;
+import utils.ConfigReader;
 import utils.ScreenshotUtil;
 
 public class LoginSteps {
@@ -34,7 +35,7 @@ public class LoginSteps {
 	public void user_enters_credintial()
 	{
 		
-		loginpage.enterUsername("Admin");
+		loginpage.enterUsername(ConfigReader.getProperty("username"));
 		loginpage.enterPassword("admin123");
 		
 	}
