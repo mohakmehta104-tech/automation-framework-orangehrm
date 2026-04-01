@@ -12,6 +12,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.LoginPage;
 import utils.ConfigReader;
+import utils.LoggerUtil;
 import utils.ScreenshotUtil;
 
 public class LoginSteps {
@@ -37,6 +38,7 @@ public class LoginSteps {
 		
 		loginpage.enterUsername(ConfigReader.getProperty("username"));
 		loginpage.enterPassword("admin123");
+		LoggerUtil.logger.info("Entering username and password");
 		
 	}
 	@And("clicks on login button")
@@ -57,6 +59,7 @@ public class LoginSteps {
 	public void tearDown(Scenario scenario) {
 	    if (scenario.isFailed()) {
 	        ScreenshotUtil.captureScreenshot(scenario.getName());
+	        LoggerUtil.logger.error("Test failed. Screenshot captured.");
 	    }
 	    BaseClass.tearDown();
 	}
